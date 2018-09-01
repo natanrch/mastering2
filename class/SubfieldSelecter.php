@@ -2,35 +2,40 @@
 
 require_once 'global.php';
 
-class FieldSelecter
+class SubfieldSelecter
 {
+	private $subfields = array();
+	private $optionsAndSubfields = array();
 
-	private $optionsAndFields = array();
+	public function __construct($subfields)
+	{
+		$this->subfields = $subfields;
+	}
 
 	public function showOptions()
 	{
-		echo "Choose the field:\n";
-		$this->findFieldsAndDefineOption();
+		echo "Choose the subfield:\n";
+		$this->defineOptions();
 		echo "\n";
 	}
 
-	public function chooseField()
+	public function chooseSubfield()
 	{
 		$choosenOption = readline();
-		if (array_key_exists($choosenOption, $this->optionsAndFields) == false) {
+		if (array_key_exists($choosenOption, $this->optionsAndSubfields) == false) {
 			echo 'Invalid option, please choose again.';
-			$this->chooseField();
+			$this->chooseSubfield();
 		}
-		return $this->optionsAndFields[$choosenOption];
+		return $this->optionsAndSubfields[$choosenOption];
 	}
 	
-	private function findFieldsAndDefineOption()
+	private function defineOptions()
 	{
-		$fields = DAO::selectFields();
+		$subfields = $this->subfields;
 		$option = 1;
-		foreach ($fields as $field) {
-			echo $option." = ".$field['name']."    ";
-			$this->optionsAndFields[$option] = $field;
+		foreach ($subfields as $subfield) {
+			echo $option." = ".$subfield['name']."    ";
+			$this->optionsAndSubfields[$option] = $subfield;
 			$option++;
 		}
 	}

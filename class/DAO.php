@@ -33,4 +33,31 @@ class DAO
         return $subfields;
 	}
 
+	public static function selectTotalSeconds()
+	{
+		$query = "SELECT sum(sec) as total_sec from works";
+        $conn = Connection::getConnection();
+        $res = $conn->query($query);
+        $sum = $res->fetch();
+        return $sum;
+	}
+
+	public static function selectTotalSecondsField($field)
+	{
+		$query = "SELECT sum(sec) as total_sec from works where id_field = ".$field['id'];
+        $conn = Connection::getConnection();
+        $res = $conn->query($query);
+        $sum = $res->fetch();
+        return $sum;
+	}
+
+	public static function selectTotalSecondsSubfield($subfield)
+	{
+		$query = "SELECT sum(sec) as total_sec from works where id_subfield = ".$subfield['id'];
+        $conn = Connection::getConnection();
+        $res = $conn->query($query);
+        $sum = $res->fetch();
+        return $sum;
+	}
+
 }
