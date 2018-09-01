@@ -3,17 +3,10 @@
 require_once 'global.php';
 $counter = new Counter;
 
-$sec = $counter->countTime();
-echo "Segundos: totais".$sec."\n";
+$counter->start();
+echo $counter->getTotalSec();
 
-// function itens() {
-// 	$a1 = 'a1<br>';
-// 	$a2 = 'a2<br>';
-// 	$a3 = 'a3<br>';
+//funcion
+//DAO::insertWork('2018-08-23', 666, 1, null);
 
-// 	return [$a1, $a2, $a3];
-
-// }
-
-// $itens = itens();
-// echo $itens[0];
+$fields = 
