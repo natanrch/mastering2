@@ -24,4 +24,13 @@ class DAO
         return $fields;
 	}
 
+	public static function selectSubfields($field)
+	{
+		$query = "SELECT * from subfields where field_id = ".$field['id'];
+		$conn = Connection::getConnection();
+        $res = $conn->query($query);
+        $subfields = $res->fetchAll();
+        return $subfields;
+	}
+
 }

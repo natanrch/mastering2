@@ -4,11 +4,19 @@ require_once 'global.php';
 $counter = new Counter;
 
 $counter->start();
+$totalSec = $counter->getTotalSec();
 
-//funcion
-//DAO::insertWork('2018-08-23', 666, 1, null);
 
-$selecter = new FieldSelecter;
-$selecter->showOptions();
-$choosenField = $selecter->chooseField();
-print_r($choosenField);
+$fieldSelecter = new FieldSelecter;
+$fieldSelecter->showOptions();
+$field = $fieldSelecter->chooseField();
+$subfields = DAO::selectSubfields($field);
+
+if(count($subfields) > 0 ) {
+	$subfieldSelecter = new SubfieldSelecter($subfields);
+	$subfieldSelecter->showOptions();
+	$subfield = $subfieldSelecter->chooseSubfield();
+}
+
+WorkInserter::insert($field, $totalSec);
+
