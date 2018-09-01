@@ -10,3 +10,5 @@ $counter->start();
 
 $selecter = new FieldSelecter;
 $selecter->showOptions();
+$choosenField = $selecter->chooseField();
+print_r($choosenField);
