@@ -18,6 +18,7 @@ class DAO
 	public static function selectFields()
 	{
 		$query = "SELECT * from fields";
+		$conn = Connection::getConnection();
         $res = $conn->query($query);
         $fields = $res->fetchAll();
         return $fields;

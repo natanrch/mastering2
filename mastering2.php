@@ -9,4 +9,5 @@ echo $counter->getTotalSec();
 //funcion
 //DAO::insertWork('2018-08-23', 666, 1, null);
 
-$fields = 
+$fields = DAO::selectFields();
+print_r($fields);
