@@ -23,13 +23,13 @@ class FieldSelecter
 		}
 		return $this->optionsAndFields[$choosenOption];
 	}
-	
+
 	private function findFieldsAndDefineOption()
 	{
 		$fields = DAO::selectFields();
 		$option = 1;
 		foreach ($fields as $field) {
-			echo $option." = ".$field['name']."    ";
+			echo $option." = ".ucfirst($field['name'])."    ";
 			$this->optionsAndFields[$option] = $field;
 			$option++;
 		}
